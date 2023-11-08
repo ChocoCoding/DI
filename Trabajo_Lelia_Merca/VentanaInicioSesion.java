@@ -13,6 +13,9 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
 import javax.swing.*;
 
 
@@ -27,6 +30,7 @@ public class VentanaInicioSesion extends JFrame implements ActionListener {
 	Checkbox clienteE,clienteC,clienteP;
 	Container c;
 	FondoPanel fondo;
+	String tipoCliente = "";
 
 	public VentanaInicioSesion(AplicacionUsuarios app) {
 		this.app = app;
@@ -49,9 +53,11 @@ public class VentanaInicioSesion extends JFrame implements ActionListener {
 		Image icon = new ImageIcon(getClass().getResource("./img/logo.png")).getImage();
         setIconImage(icon);
 
+		Color colop = new Color(255,255,255,255);
+
 		//DEFINIMOS EL PANEL CENTRAL
 		panelCentral = new JPanel();
-		panelCentral.setBackground(Color.white.brighter());
+		panelCentral.setBackground(colop);
 		panelCentral.setLayout(new GridBagLayout());
 		c.add(panelCentral,createConstraints(1,1,3,1,1.0,0.2,
 		GridBagConstraints.NONE,GridBagConstraints.CENTER,new Insets(-250, 0, 0, 0)));
@@ -74,10 +80,13 @@ public class VentanaInicioSesion extends JFrame implements ActionListener {
 		panelCentral.add(labelNombreUsuario, createConstraints(0,1,1,1,1.0,0.2,
 		GridBagConstraints.NONE,GridBagConstraints.NORTHWEST,new Insets(0, 20, 5, 20)));
 
-		//LABEL CUADRO DE TEXTO USUARIO
-		textoUsuario = new JTextField("Introduce nombre usuario",20);
+		//CUADRO DE TEXTO USUARIO
+		textoUsuario = new JTextField(20);
 		panelCentral.add(textoUsuario, createConstraints(0,2,1,1,1.0,0.2,
 		GridBagConstraints.NONE,GridBagConstraints.NORTHWEST,new Insets(0, 20, 10, 20)));
+		
+		textoUsuario.addActionListener(null);
+
 
 		//TIPO DE CLIENTE
 		seleccionTipoCliente = new CheckboxGroup();
@@ -91,14 +100,20 @@ public class VentanaInicioSesion extends JFrame implements ActionListener {
 		panelSeleccionCliente.add(clienteC);
 		panelSeleccionCliente.add(clienteP);
 
+		clienteE.addItemListener(new OyenteCheckbox());
+		clienteC.addItemListener(new OyenteCheckbox());
+		clienteP.addItemListener(new OyenteCheckbox());
+
 		panelCentral.add(panelSeleccionCliente, createConstraints(0,3,3,1,1.0,0.2,
 		GridBagConstraints.HORIZONTAL,GridBagConstraints.NORTHWEST,new Insets(20, 20, 20, 20)));
 
 		//Boton aceptar
 		btnAceptar = new JButton("Aceptar");
-		
+		btnAceptar.setEnabled(false);
 		panelCentral.add(btnAceptar, createConstraints(0,4,3,1,1.0,0.2,
 		GridBagConstraints.NONE,GridBagConstraints.CENTER,new Insets(20, 20, 20,20)));
+		OyenteBoton oyenteBoton = new OyenteBoton();
+		btnAceptar.addActionListener(oyenteBoton);
 
 	}
 
@@ -151,7 +166,6 @@ class LaminaConImagen extends JPanel{
 
 class FondoPanel extends JPanel{
 	private Image imagen;
-
 	@Override
 	public void paint(Graphics g){
 		imagen = new ImageIcon(getClass().getResource("./img/gourmet.jpg")).getImage();
@@ -162,7 +176,36 @@ class FondoPanel extends JPanel{
 
 		super.paint(g);
 	}
+}
 
+class OyenteCheckbox implements ItemListener{
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		btnAceptar.setEnabled(true);
+		if (e.getSource() == clienteE) {
+			tipoCliente = "esporadico";
+		}if (e.getSource() == clienteC) {
+			tipoCliente = "club";
+		}if (e.getSource() == clienteP){
+			tipoCliente = "premium";
+		}
+	}
+
+}
+
+class OyenteBoton implements ActionListener{
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JButton boton = (JButton) e.getSource();
+
+		if (boton.equals(btnAceptar)) {
+			if (!textoUsuario.getText().isEmpty()) {
+				app.mostrarVentanaOfertas(tipoCliente,textoUsuario.getText(),app);
+			}else JOptionPane.showMessageDialog(null, "Introduce un nombre de usuario");
+		}
+	}
 
 }
 
