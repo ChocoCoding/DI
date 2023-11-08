@@ -46,37 +46,33 @@ public class VentanaOferta extends JFrame{
        	c.add(textoBienvenido,createConstraints(2,0,1,1,1.0,0.2,
 		GridBagConstraints.NONE,GridBagConstraints.NORTHEAST,new Insets(10, 10, 50, 15)));
 
-        //Cerrar sesion
-        
-        //PANEL 1
+
+        //IMAGEN 1
+        ImageIcon img1 = new ImageIcon(getClass().getResource("./img/champan.png"));
+        LaminaConImagen laminaConImagen1 = new LaminaConImagen(img1);
+        c.add(laminaConImagen1,createConstraints(0,1,1,1,1.0,0.2,
+		GridBagConstraints.NONE,GridBagConstraints.NORTH,new Insets(10, 10, 0, 15)));
+
+        //IMAGEN 2
+        ImageIcon img2 = new ImageIcon(getClass().getResource("./img/champan.png"));
+        LaminaConImagen laminaConImagen2 = new LaminaConImagen(img1);
+        c.add(laminaConImagen2,createConstraints(0,2,1,1,1.0,0.2,
+		GridBagConstraints.NONE,GridBagConstraints.NORTH,new Insets(10, 10, 0, 15)));
+
+        //IMAGEN 3
+        ImageIcon img3 = new ImageIcon(getClass().getResource("./img/champan.png"));
+        LaminaConImagen laminaConImagen3 = new LaminaConImagen(img1);
+        c.add(laminaConImagen3,createConstraints(0,3,1,1,1.0,0.2,
+		GridBagConstraints.NONE,GridBagConstraints.NORTH,new Insets(10, 10, 0, 15)));
+
         panel1 = new JPanel();
         panel1.setLayout(new GridBagLayout());
-        c.add(panel1,createConstraints(0,1,1,1,1.0,0.2,
-		GridBagConstraints.NONE,GridBagConstraints.NORTH,new Insets(0, 0, 0, 15)));
-        ImageIcon img1 = new ImageIcon(getClass().getResource("./img/champan.png"));
-        LaminaConImagen laminaConImagen2 = new LaminaConImagen(img1);
-        panel1.add(laminaConImagen2,createConstraints(0,0,1,1,1.0,0.2,
-		GridBagConstraints.NONE,GridBagConstraints.CENTER,new Insets(10, 10, 0, 15)));
+        c.add(panel1,createConstraints(1,1,2,1,1.0,0.2,
+		GridBagConstraints.NONE,GridBagConstraints.NORTH,new Insets(10, 10, 0, 15)));
 
-        panel2 = new JPanel();
-        panel2.setLayout(new GridBagLayout());
-        c.add(panel2,createConstraints(0,2,1,1,1.0,0.2,
-		GridBagConstraints.NONE,GridBagConstraints.NORTH,new Insets(0, 0, 0, 15)));
-        ImageIcon img2 = new ImageIcon(getClass().getResource("./img/champan.png"));
-        LaminaConImagen laminaConImagen3 = new LaminaConImagen(img2);
-        panel2.add(laminaConImagen3,createConstraints(0,0,1,1,1.0,0.2,
-		GridBagConstraints.NONE,GridBagConstraints.CENTER,new Insets(10, 10, 0, 15)));
-
-
-        panel3 = new JPanel();
-        panel3.setLayout(new GridBagLayout());
-        c.add(panel3,createConstraints(0,3,1,1,1.0,0.2,
-		GridBagConstraints.NONE,GridBagConstraints.NORTH,new Insets(0, 0, 0, 15)));
-        ImageIcon img3 = new ImageIcon(getClass().getResource("./img/champan.png"));
-        LaminaConImagen laminaConImagen4 = new LaminaConImagen(img3);
-        panel3.add(laminaConImagen4,createConstraints(0,0,1,1,1.0,0.2,
-		GridBagConstraints.NONE,GridBagConstraints.CENTER,new Insets(10, 10, 0, 15)));
-
+        nombreProducto1 = new JLabel("Patats");
+        panel1.add(nombreProducto1,createConstraints(0,0,1,1,1.0,0.2,
+		GridBagConstraints.NONE,GridBagConstraints.WEST,new Insets(10, 10, 0, 15)));
   
     }
 
@@ -119,7 +115,6 @@ class LaminaConImagen extends JPanel{
 		setOpaque(false);
 		super.paintComponent(g);
 	}
-
 }
 }
     
