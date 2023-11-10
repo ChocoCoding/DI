@@ -12,7 +12,12 @@ public class AplicacionUsuarios {
     public void mostrarVentanaOfertas(String tipoCliente,String nombreCliente,AplicacionUsuarios app){
                 ventanaOferta = new VentanaOferta(tipoCliente,nombreCliente,app);
                 ventanaOferta.setVisible(true);
+    }
 
+    public void cerrarSesion(AplicacionUsuarios app){
+            ventanaInicioSesion.setVisible(false);
+            ventanaOferta.setVisible(false);
+            ejecutar();
     }
 
 }
