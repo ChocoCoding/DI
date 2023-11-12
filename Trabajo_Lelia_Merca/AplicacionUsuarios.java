@@ -1,6 +1,6 @@
 public class AplicacionUsuarios {
     VentanaInicioSesion ventanaInicioSesion;
-    VentanaOferta ventanaOferta;
+    VentanaOfertas ventanaOfertas;
 
 
     public void ejecutar(){
@@ -9,14 +9,14 @@ public class AplicacionUsuarios {
     }
 
 
-    public void mostrarVentanaOfertas(String tipoCliente,String nombreCliente,AplicacionUsuarios app){
-                ventanaOferta = new VentanaOferta(tipoCliente,nombreCliente,app);
-                ventanaOferta.setVisible(true);
+    public void mostrarVentanaOferta(String tipoCliente,String nombreCliente,AplicacionUsuarios app){
+                ventanaOfertas = new VentanaOfertas(tipoCliente,nombreCliente,app);
+                ventanaOfertas.setVisible(true);
     }
 
     public void cerrarSesion(AplicacionUsuarios app){
             ventanaInicioSesion.setVisible(false);
-            ventanaOferta.setVisible(false);
+            ventanaOfertas.setVisible(false);
             ejecutar();
     }
 

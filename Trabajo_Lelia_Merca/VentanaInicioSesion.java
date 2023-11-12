@@ -1,9 +1,9 @@
 
-import java.awt.BorderLayout;
 import java.awt.Checkbox;
 import java.awt.CheckboxGroup;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -11,6 +11,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -46,9 +47,14 @@ public class VentanaInicioSesion extends JFrame implements ActionListener {
 		//Establecemos propiedades de nuestra ventana
 		setTitle("Lelia Merca Gourmet");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(600, 400, 800, 600);
-		setResizable(false);
 
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int height = screenSize.height;
+		int width = screenSize.width;
+
+		setBounds(200, 400, 400, 600);
+		setResizable(false);
+		setLocationRelativeTo(null);
 		//Creamos el icono de nuestra aplicacion
 		Image icon = new ImageIcon(getClass().getResource("./img/logo.png")).getImage();
         setIconImage(icon);
@@ -202,7 +208,7 @@ class OyenteBoton implements ActionListener{
 
 		if (boton.equals(btnAceptar)) {
 			if (!textoUsuario.getText().isEmpty()) {
-				app.mostrarVentanaOfertas(tipoCliente,textoUsuario.getText(),app);
+				app.mostrarVentanaOferta(tipoCliente,textoUsuario.getText(),app);
 			}else JOptionPane.showMessageDialog(null, "Introduce un nombre de usuario");
 		}
 	}
