@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 import javax.swing.*;
 public class VentanaOfertas extends JFrame{
@@ -16,7 +17,7 @@ public class VentanaOfertas extends JFrame{
 
     JPanel panelTop,panelIzq,panelCentral,panelDerecho;
 
-    JPanel panel1,panel2,panel3,panel4Vacio,panelImg1,panelImg2,panelImg3,panelboton,panelCantidades1,panelCantidades2,
+    JPanel panel1,panel2,panel3,panel4Vacio,panelDerechoVacio,panelImg1,panelImg2,panelImg3,panelboton,panelCantidades1,panelCantidades2,
     panelCantidades3,panelPagoLimpiar,panelActivarOfertasm,panelLogin,panelVacio1,panelClienteClub,panelClientePremium;
 
     Container c;
@@ -33,7 +34,9 @@ public class VentanaOfertas extends JFrame{
 
     //COLORES
     Color oro = new Color(234,190,63);
-    Color colorFondo = new Color(90,101,150);
+    Color colorFondoAzul = new Color(90,101,150);
+    Color colorFondoMarron = new Color(171,150,89);
+
 
     public VentanaOfertas(String tipoCliente,String nombreCliente,AplicacionUsuarios app){
 
@@ -48,6 +51,7 @@ public class VentanaOfertas extends JFrame{
         setLocationRelativeTo(null);
 		c = this.getContentPane();
         c.setLayout(new GridBagLayout());
+        c.setBackground(colorFondoAzul);
         //Creamos el icono de nuestra aplicacion
 		java.awt.Image icon = new ImageIcon(getClass().getResource("./img/logo.png")).getImage();
         setIconImage(icon);
@@ -55,6 +59,7 @@ public class VentanaOfertas extends JFrame{
         //PANEL TOP
         panelTop = new JPanel();
         panelTop.setLayout(new GridBagLayout());
+        panelTop.setBackground(colorFondoAzul);
         
         c.add(panelTop,createConstraints(0,0,3,1,3,0.3,
 		GridBagConstraints.BOTH,GridBagConstraints.WEST,0,0,new Insets(0, 0, 0, 0)));
@@ -76,10 +81,12 @@ public class VentanaOfertas extends JFrame{
         //PANEL LOGIN
         panelLogin = new JPanel();
         panelLogin.setLayout(new GridLayout(2,1));
+        panelLogin.setBackground(colorFondoAzul);
         panelTop.add(panelLogin,createConstraints(2,0,1,1,0.1,1,
-        GridBagConstraints.NONE,GridBagConstraints.NORTHEAST,0,0,new Insets(0, 0, 0, 0)));
+        GridBagConstraints.NONE,GridBagConstraints.NORTHEAST,0,0,new Insets(0, 0, 0, 30)));
         //Texto Bienvenida
         textoBienvenido = new JLabel("Bienvenido: " + nombreCliente);
+        textoBienvenido.setForeground(Color.white);
         textoBienvenido.setFont(new Font("Arial",Font.BOLD,24));
         panelLogin.add(textoBienvenido);
         //Boton CerrarSesion
@@ -90,18 +97,17 @@ public class VentanaOfertas extends JFrame{
 
         //PANEL IZQUIERDO
         panelIzq = new JPanel();
-        panelIzq.setLayout(new GridBagLayout());;
-        c.add(panelIzq,createConstraints(0,1,1,1,0.3,0.95,
+        panelIzq.setLayout(new GridBagLayout());
+        panelIzq.setBackground(colorFondoAzul);
+        c.add(panelIzq,createConstraints(0,1,1,1,0.15,0.95,
 		GridBagConstraints.BOTH,GridBagConstraints.CENTER,0,0,new Insets(0, 20, 0, 20)));
-        panelIzq.setBackground(new Color(255,255,255,0));
-        panelIzq.setOpaque(false);
 
         //Texto carrito
         txtCarritoDeCompra = new JLabel("Carrito de compra");
         txtCarritoDeCompra.setFont(new Font("Arial",Font.BOLD,20));
         txtCarritoDeCompra.setForeground(oro);
         panelIzq.add(txtCarritoDeCompra,createConstraints(0,0,1,1,1,0.1,
-		GridBagConstraints.BOTH,GridBagConstraints.NORTHWEST,0,0,new Insets(0, 0, 0, 0)));
+		GridBagConstraints.VERTICAL,GridBagConstraints.SOUTHWEST,0,0,new Insets(0, 0, -30, 0)));
 
         //Carrito de compra
         textAreaCarrito = new JTextArea();
@@ -109,7 +115,7 @@ public class VentanaOfertas extends JFrame{
         textAreaCarrito.setEditable(false);
         textAreaCarrito.setWrapStyleWord(true);
         textAreaCarrito.setAutoscrolls(true);
-        textAreaCarrito.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, oro));
+        textAreaCarrito.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, oro));
         panelIzq.add(textAreaCarrito,createConstraints(0,1,1,1,1,0.8,
 		GridBagConstraints.BOTH,GridBagConstraints.NORTHWEST,0,0,new Insets(0, 0, 0, 0)));
 
@@ -137,6 +143,7 @@ public class VentanaOfertas extends JFrame{
         panelCentral.setLayout(new GridBagLayout());
         c.add(panelCentral,createConstraints(1,1,1,1,0.6,0.95,
 		GridBagConstraints.BOTH,GridBagConstraints.CENTER,0,0,new Insets(0, 0, 0, 0)));
+        panelCentral.setBackground(colorFondoAzul);
 
         //PANEL 1
         panel1 = new JPanel();
@@ -144,7 +151,7 @@ public class VentanaOfertas extends JFrame{
         panel1.setLayout(new GridBagLayout());
         panelCentral.add(panel1,createConstraints(0,0,1,1,1,0.28,
 		GridBagConstraints.BOTH,GridBagConstraints.WEST,0,0,new Insets(5, 0, 0, 0)));
-        panel1.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, oro));
+        panel1.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, oro));
 
         ImageIcon img1 = new ImageIcon(getClass().getResource("./img/jamon.jpg"));
         LaminaConImagenContenedor laminaConImagen1 = new LaminaConImagenContenedor(img1);
@@ -160,7 +167,7 @@ public class VentanaOfertas extends JFrame{
                 "-Bebidas:\r\n" + //
                 "1 Botella 75 cl cava brut reserva Segura Viudas\r\n" + //
                 "-Charcutería:\r\n" + //
-                "1 Pieza 5 - 5,5 kg aprox. paleta ibérica de cebo envasada\r\n" + //
+                "1 Pieza 5 - 5,5 kg aprox. paleta ibérica de cebo\r\n" + // 
                 "-Conservas y Otros:\r\n" + //
                 "1 Bolsa 70 g nueces mondadas Gancedo\r\n"
                 );
@@ -206,7 +213,7 @@ public class VentanaOfertas extends JFrame{
         panelCentral.add(panel2,createConstraints(0,1,1,1,1,0.28,
 		GridBagConstraints.BOTH,GridBagConstraints.CENTER,0,0,new Insets(5, 0, 0, 0)));
         panel2.setBackground(Color.white);
-        panel2.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, oro));
+        panel2.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, oro));
 
         ImageIcon img2 = new ImageIcon(getClass().getResource("./img/cesta1.jpg"));
         LaminaConImagenContenedor laminaConImagen2 = new LaminaConImagenContenedor(img2);
@@ -222,8 +229,8 @@ public class VentanaOfertas extends JFrame{
                 "-Bebidas:\r\n" + //
                 "1 Botella 75 cl cava brut reserva Segura Viudas\r\n" + //
                 "-Charcutería:\r\n" + //
-                "1 Pieza 5 - 5,5 kg aprox. paleta ibérica de cebo envasada\r\n" + //
-                "-Conservas y Otros:\r\n" + //
+                "1 Pieza 5 - 5,5 kg aprox. paleta ibérica de cebo\r\n" + // 
+                "-Conservas y Otros:\\r\n" + //
                 "1 Bolsa 70 g nueces mondadas Gancedo\r\n"
                 );
         textArea2.setEditable(false);
@@ -269,7 +276,8 @@ public class VentanaOfertas extends JFrame{
         panelCentral.add(panel3,createConstraints(0,2,1,1,1,0.28,
 		GridBagConstraints.BOTH,GridBagConstraints.CENTER,0,0,new Insets(5, 0, 0, 0)));
         panel3.setBackground(Color.white);
-        panel3.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, oro));
+        panel3.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, oro));
+        
 
         ImageIcon img3 = new ImageIcon(getClass().getResource("./img/mejoresproductos.jpg"));
         LaminaConImagenContenedor laminaConImagen3 = new LaminaConImagenContenedor(img3);
@@ -285,8 +293,8 @@ public class VentanaOfertas extends JFrame{
                 "-Bebidas:\r\n" + //
                 "1 Botella 75 cl cava brut reserva Segura Viudas\r\n" + //
                 "-Charcutería:\r\n" + //
-                "1 Pieza 5 - 5,5 kg aprox. paleta ibérica de cebo envasada\r\n" + //
-                "-Conservas y Otros:\r\n" + //
+                "1 Pieza 5 - 5,5 kg aprox. paleta ibérica de cebo\r\n" + // 
+                "-Conservas y Otros:\\r\n" + //
                 "1 Bolsa 70 g nueces mondadas Gancedo\r\n"
                 );
         textArea3.setEditable(false);
@@ -328,28 +336,38 @@ public class VentanaOfertas extends JFrame{
         //panel4Vacio
         panel4Vacio = new JPanel();
         panel4Vacio.setLayout(new GridBagLayout());
+        panel4Vacio.setBackground(colorFondoAzul);
         panelCentral.add(panel4Vacio,createConstraints(0,3,1,1,1,0.16,
 		GridBagConstraints.BOTH,GridBagConstraints.CENTER,0,0,new Insets(0, 0, 0, 0)));
 
+
+        //PANEL DERECHO VACIO
+         panelDerechoVacio = new JPanel();
+         panelDerechoVacio.setLayout(new GridBagLayout());
+         panelDerechoVacio.setBackground(colorFondoAzul);
+         c.add(panelDerechoVacio,createConstraints(2,2,1,1,0.1,0.16,
+		 GridBagConstraints.VERTICAL,GridBagConstraints.CENTER,10,0,new Insets(0, 5, 0, 5)));
         //PANEL DERECHO
         panelDerecho = new JPanel();
         panelDerecho.setLayout(new GridBagLayout());
         panelDerecho.setBackground(Color.WHITE);
-        panelDerecho.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, oro));
-        c.add(panelDerecho,createConstraints(2,1,1,1,0.2,1,
-		GridBagConstraints.BOTH,GridBagConstraints.NORTH,10,0,new Insets(0, 10, 0, 0)));
+        panelDerecho.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, oro));
+        c.add(panelDerecho,createConstraints(2,1,1,1,0.1,0.6,
+		GridBagConstraints.VERTICAL,GridBagConstraints.CENTER,10,0,new Insets(0, 5, 0, 5)));
+
 
         if (tipoCliente.equals("esporadico")) {
             labelPanelDerecho = new JLabel("<html>Los clientes esporádicos,<br> no disponen de cupones</html>");
             labelPanelDerecho.setFont(new Font("Arial",Font.BOLD,18));
 
-            panelDerecho.add(labelPanelDerecho,createConstraints(0,0,1,1,1,0.5,
-		    GridBagConstraints.BOTH,GridBagConstraints.NORTH,0,10,new Insets(0, 0, 0, 0)));
+            panelDerecho.add(labelPanelDerecho,createConstraints(0,0,1,1,1,0.6,
+		    GridBagConstraints.HORIZONTAL,GridBagConstraints.NORTH,0,5,new Insets(0, 5, 0, 0)));
     
         }else if (tipoCliente.equals("club")) {
             labelPanelDerecho = new JLabel("Cupones clientes club: ");
             labelPanelDerecho.setFont(new Font("Arial",Font.BOLD,18));
             panelClienteClub = new JPanel();
+            panelClienteClub.setBackground(Color.white);
             panelClienteClub.setLayout(new GridLayout(2,1));
             labelClienteClub = new JLabel("15% de descuento");
             labelClienteClub.setFont(new Font("Arial",Font.BOLD,18));
@@ -357,21 +375,24 @@ public class VentanaOfertas extends JFrame{
             btnCuponclub.setForeground(Color.WHITE);
             btnCuponclub.setBackground(Color.red);
             btnCuponclub.setFont(new Font("Arial",Font.BOLD,18));
+        
+            panelDerecho.add(labelPanelDerecho,createConstraints(0,0,1,1,0.2,0.1,
+		    GridBagConstraints.HORIZONTAL,GridBagConstraints.NORTH,0,5,new Insets(0, 5, 0, 0)));
 
-            panelDerecho.add(labelPanelDerecho,createConstraints(0,0,1,1,0.2,0.5,
-		    GridBagConstraints.BOTH,GridBagConstraints.NORTH,0,5,new Insets(0, 0, 0, 0)));
-
-            panelDerecho.add(panelClienteClub,createConstraints(0,1,1,1,0.2,0.5,
-		    GridBagConstraints.BOTH,GridBagConstraints.NORTH,10,0,new Insets(0, 0, 0, 0)));
+            panelDerecho.add(panelClienteClub,createConstraints(0,1,1,1,0.2,0.9,
+		    GridBagConstraints.HORIZONTAL,GridBagConstraints.NORTH,5,5,new Insets(0, 5, 0, 5)));
 
             panelClienteClub.add(labelClienteClub);
             panelClienteClub.add(btnCuponclub);
+
+            btnCuponclub.addActionListener(oyenteAddCarrito);
             
 
         }else if (tipoCliente.equals("premium")) {
             labelPanelDerecho = new JLabel("Cupones clientes premium:");
             labelPanelDerecho.setFont(new Font("Arial",Font.BOLD,18));
             panelClientePremium = new JPanel();
+            panelClientePremium.setBackground(Color.white);
             panelClientePremium.setLayout(new GridLayout(2,1));
             labelClientePremium = new JLabel("25% de descuento");
             labelClientePremium.setFont(new Font("Arial",Font.BOLD,18));
@@ -380,14 +401,16 @@ public class VentanaOfertas extends JFrame{
             btnCuponPremium.setBackground(Color.red);
             btnCuponPremium.setFont(new Font("Arial",Font.BOLD,18));
 
-            panelDerecho.add(labelPanelDerecho,createConstraints(0,0,1,1,0.2,0.5,
-		    GridBagConstraints.BOTH,GridBagConstraints.NORTH,0,5,new Insets(0, 0, 0, 0)));
+            panelDerecho.add(labelPanelDerecho,createConstraints(0,0,1,1,0.2,0.1,
+		    GridBagConstraints.HORIZONTAL,GridBagConstraints.NORTH,0,5,new Insets(0, 5, 0, 5)));
 
-            panelDerecho.add(panelClientePremium,createConstraints(0,1,1,1,0.2,0.5,
-		    GridBagConstraints.BOTH,GridBagConstraints.NORTH,10,0,new Insets(0, 0, 0, 0)));
+            panelDerecho.add(panelClientePremium,createConstraints(0,1,1,1,0.2,0.9,
+		    GridBagConstraints.HORIZONTAL,GridBagConstraints.NORTH,10,0,new Insets(0, 5, 0, 5)));
 
             panelClientePremium.add(labelClientePremium);
             panelClientePremium.add(btnCuponPremium);
+            btnCuponPremium.addActionListener(oyenteAddCarrito);
+
         }
 
 
@@ -489,7 +512,7 @@ class LaminaConImagenContenedor extends JPanel{
                 String cant = spinner1.getValue().toString();
                 String title = nombreProducto1.getText();
                 String precio = txtprecio1.getText().substring(0,txtprecio1.getText().length() - 1);
-                int total = Integer.parseInt(precio) * Integer.parseInt(cant);
+                Double total = Double.parseDouble(precio) * Integer.parseInt(cant);
                 if (cant.equals("0")) {
                     JOptionPane.showMessageDialog(null, "Tienes que añadir al menos un articulo", "Fallo al añadir articulo", JOptionPane.WARNING_MESSAGE);
                 }else{
@@ -499,7 +522,7 @@ class LaminaConImagenContenedor extends JPanel{
                 String cant = spinner2.getValue().toString();
                 String title = nombreProducto2.getText();
                 String precio = txtprecio2.getText().substring(0,txtprecio2.getText().length() - 1);
-                int total = Integer.parseInt(precio) * Integer.parseInt(cant);
+                Double total = Double.parseDouble(precio) * Double.parseDouble(cant);
                 if (cant.equals("0")) {
                     JOptionPane.showMessageDialog(null, "Tienes que añadir al menos un articulo", "Fallo al añadir articulo", JOptionPane.WARNING_MESSAGE);
                 }else{
@@ -509,22 +532,54 @@ class LaminaConImagenContenedor extends JPanel{
                 String cant = spinner3.getValue().toString();
                 String title = nombreProducto3.getText();
                 String precio = txtprecio3.getText().substring(0,txtprecio3.getText().length() - 1);
-                int total = Integer.parseInt(precio) * Integer.parseInt(cant);
+                Double total = Double.parseDouble(precio) * Double.parseDouble(cant);
                 if (cant.equals("0")) {
                     JOptionPane.showMessageDialog(null, "Tienes que añadir al menos un articulo", "Fallo al añadir articulo", JOptionPane.WARNING_MESSAGE);
                 }else{
                     introducirValoresCarrito(cant, title, precio,textAreaCarrito,total);
-                } 
-            }
+                }
+            }if (boton.equals(btnCuponclub)) {
+                    System.out.println("Soy cliente club");
+                    DecimalFormat df = new DecimalFormat("#.00");
+                    Double nuevoPrecio1 = Integer.parseInt(txtprecio1.getText().substring(0,txtprecio1.getText().length() - 1)) - Integer.parseInt(txtprecio1.getText().substring(0,txtprecio1.getText().length() - 1)) * 0.15 ;
+                    Double nuevoPrecio2 = Integer.parseInt(txtprecio2.getText().substring(0,txtprecio2.getText().length() - 1)) - Integer.parseInt(txtprecio2.getText().substring(0,txtprecio2.getText().length() - 1)) * 0.15 ;
+                    Double nuevoPrecio3 = Integer.parseInt(txtprecio3.getText().substring(0,txtprecio3.getText().length() - 1)) - Integer.parseInt(txtprecio3.getText().substring(0,txtprecio3.getText().length() - 1)) * 0.15 ;
+                    df.format(nuevoPrecio1);
+                    df.format(nuevoPrecio2);
+                    df.format(nuevoPrecio3);
+                    txtprecio1.setText(String.valueOf(nuevoPrecio1) + "€");
+                    txtprecio1.setForeground(Color.red);
+                    txtprecio2.setText(String.valueOf(nuevoPrecio2) + "€");
+                    txtprecio2.setForeground(Color.red);
+                    txtprecio3.setText(String.valueOf(nuevoPrecio3) + "€");
+                    txtprecio3.setForeground(Color.red);
+                    btnCuponclub.setEnabled(false);
+                } if (boton.equals(btnCuponPremium)) {
+                    System.out.println("Soy cliente premium");
+                    DecimalFormat df = new DecimalFormat("#.00");
+                    Double nuevoPrecio1 = Integer.parseInt(txtprecio1.getText().substring(0,txtprecio1.getText().length() - 1)) - Integer.parseInt(txtprecio1.getText().substring(0,txtprecio1.getText().length() - 1)) * 0.25 ;
+                    Double nuevoPrecio2 = Integer.parseInt(txtprecio2.getText().substring(0,txtprecio2.getText().length() - 1)) - Integer.parseInt(txtprecio2.getText().substring(0,txtprecio2.getText().length() - 1)) * 0.25 ;
+                    Double nuevoPrecio3 = Integer.parseInt(txtprecio3.getText().substring(0,txtprecio3.getText().length() - 1)) - Integer.parseInt(txtprecio3.getText().substring(0,txtprecio3.getText().length() - 1)) * 0.25 ;
+                    df.format(nuevoPrecio1);
+                    df.format(nuevoPrecio2);
+                    df.format(nuevoPrecio3);
+                    txtprecio1.setText(String.valueOf(nuevoPrecio1) + "€");
+                    txtprecio1.setForeground(Color.red);
+                    txtprecio2.setText(String.valueOf(nuevoPrecio2) + "€");
+                    txtprecio2.setForeground(Color.red);
+                    txtprecio3.setText(String.valueOf(nuevoPrecio3) + "€");
+                    txtprecio3.setForeground(Color.red);
+                    btnCuponPremium.setEnabled(false);
         }
 
     }
 
-    private void introducirValoresCarrito(String cant, String title,String precio,JTextArea area,int total){
+    private void introducirValoresCarrito(String cant, String title,String precio,JTextArea area,Double total){
         String text = textAreaCarrito.getText();
         costoTotalCarrito += total;
         text += "\n" + title  + " "+ "X" + " " + cant + "     " + "Total: " + total+ "€";
         area.setText(text);
     }
 
+}
 }
