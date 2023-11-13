@@ -36,6 +36,7 @@ public class VentanaOfertas extends JFrame{
     Color oro = new Color(234,190,63);
     Color colorFondoAzul = new Color(90,101,150);
     Color colorFondoMarron = new Color(171,150,89);
+    Color colorBotones = new Color(179,183,255);
 
 
     public VentanaOfertas(String tipoCliente,String nombreCliente,AplicacionUsuarios app){
@@ -124,7 +125,7 @@ public class VentanaOfertas extends JFrame{
         panelPagoLimpiar.setLayout(new FlowLayout());
         panelPagoLimpiar.setBackground(new Color(90,101,150,0));
         btnPagar = new JButton("Tramitar pedido");
-        btnPagar.setBackground(Color.GREEN);
+        btnPagar.setBackground(oro);
         btnLimpiarCarrito = new JButton("Limpiar carrito");
         btnLimpiarCarrito.setBackground(Color.WHITE);
         panelPagoLimpiar.add(btnPagar);
@@ -187,7 +188,7 @@ public class VentanaOfertas extends JFrame{
         }else if (tipoCliente.equals("premium")) {
             txtprecio1 = new JLabel("71€");
             txtprecio1.setFont(new Font("Arial",Font.BOLD,24));
-            txtprecio1.setForeground(Color.CYAN);
+            txtprecio1.setForeground(new Color(108,197,235));
         }
         panel1.add(txtprecio1,createConstraints(2,2,1,1,0.5,0.1,
 		GridBagConstraints.NONE,GridBagConstraints.NORTHWEST,0,0,new Insets(0, 30, 0, 0)));
@@ -201,7 +202,9 @@ public class VentanaOfertas extends JFrame{
         value1 =  new SpinnerNumberModel(0,0,999,1);
         spinner1 = new JSpinner(value1);
         addCarrito1 = new JButton("Añadir al carrito");
-        addCarrito1.setBackground(Color.GREEN);
+        addCarrito1.setBackground(oro);
+        addCarrito1.setForeground(Color.WHITE);
+        addCarrito1.setFont(new Font("Arial", Font.BOLD,14));
         panelCantidades1.add(spinner1);
         panelCantidades1.add(addCarrito1);
         addCarrito1.addActionListener(oyenteAddCarrito);
@@ -249,7 +252,7 @@ public class VentanaOfertas extends JFrame{
         }else if (tipoCliente.equals("premium")) {
             txtprecio2 = new JLabel("320€");
             txtprecio2.setFont(new Font("Arial",Font.BOLD,24));
-            txtprecio2.setForeground(Color.CYAN);
+            txtprecio2.setForeground(new Color(108,197,235));
         }
         panel2.add(txtprecio2,createConstraints(2,2,1,1,0.5,0.1,
 		GridBagConstraints.NONE,GridBagConstraints.NORTHWEST,0,0,new Insets(0, 30, 0, 0)));
@@ -263,7 +266,9 @@ public class VentanaOfertas extends JFrame{
         value2 =  new SpinnerNumberModel(0,0,999,1);
         spinner2 = new JSpinner(value2);
         addCarrito2 = new JButton("Añadir al carrito");
-        addCarrito2.setBackground(Color.GREEN);
+        addCarrito2.setBackground(oro);
+        addCarrito2.setForeground(Color.WHITE);
+        addCarrito2.setFont(new Font("Arial", Font.BOLD,14));
         panelCantidades2.add(spinner2);
         panelCantidades2.add(addCarrito2);
         addCarrito2.addActionListener(oyenteAddCarrito);
@@ -313,7 +318,7 @@ public class VentanaOfertas extends JFrame{
         }else if (tipoCliente.equals("premium")) {
             txtprecio3 = new JLabel("474€");
             txtprecio3.setFont(new Font("Arial",Font.BOLD,24));
-            txtprecio3.setForeground(Color.CYAN);
+            txtprecio3.setForeground(new Color(108,197,235));
         }
         panel3.add(txtprecio3,createConstraints(2,2,1,1,0.5,0.1,
 		GridBagConstraints.NONE,GridBagConstraints.NORTHWEST,0,0,new Insets(0, 30, 0, 0)));
@@ -327,7 +332,9 @@ public class VentanaOfertas extends JFrame{
         value3 =  new SpinnerNumberModel(0,0,999,1);
         spinner3 = new JSpinner(value3);
         addCarrito3 = new JButton("Añadir al carrito");
-        addCarrito3.setBackground(Color.green);
+        addCarrito3.setBackground(oro);
+        addCarrito3.setFont(new Font("Arial", Font.BOLD,14));
+        addCarrito3.setForeground(Color.WHITE);
         panelCantidades3.add(spinner3);
         panelCantidades3.add(addCarrito3);
         addCarrito3.addActionListener(oyenteAddCarrito);
@@ -488,8 +495,11 @@ class LaminaConImagenContenedor extends JPanel{
             JButton boton = (JButton) e.getSource();
 
             if (boton.equals(btnPagar)) {
-                JOptionPane.showConfirmDialog(null, "¿Quieres tramitar el pedido de: " + costoTotalCarrito + "€?" );
-
+                int confirmado = JOptionPane.showConfirmDialog(null, "¿Quieres tramitar el pedido de: " + costoTotalCarrito + "€?" );
+                if (JOptionPane.OK_OPTION == confirmado){
+                    JOptionPane.showMessageDialog(null,"Gracias por tu compra");
+                    textAreaCarrito.setText("");
+                }
             }if (boton.equals(btnLimpiarCarrito)) {
                 textAreaCarrito.setText("");
                 costoTotalCarrito = 0;
