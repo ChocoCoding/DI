@@ -35,10 +35,6 @@ public class VentanaInicioSesion extends JFrame implements ActionListener {
 
 	public VentanaInicioSesion(AplicacionUsuarios app) {
 		this.app = app;
-		fondo = new FondoPanel();
-		this.setContentPane(fondo);
-		//Imagen de fondo
-
 
 		//Panel de fondo
 		//Establecemos un Gridbaglayout para el panel de fondo
@@ -60,14 +56,16 @@ public class VentanaInicioSesion extends JFrame implements ActionListener {
         setIconImage(icon);
 
 		Color colop = new Color(255,255,255,255);
-
+		Color oro = new Color(234,190,63);
+		Color colorFondoAzul = new Color(90,101,150);
 		//DEFINIMOS EL PANEL CENTRAL
 		panelCentral = new JPanel();
 		panelCentral.setBackground(colop);
 		panelCentral.setLayout(new GridBagLayout());
 		c.add(panelCentral,createConstraints(1,1,3,1,1.0,0.2,
 		GridBagConstraints.NONE,GridBagConstraints.CENTER,new Insets(-250, 0, 0, 0)));
-		
+		panelCentral.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, oro));
+		c.setBackground(colorFondoAzul);
 		//Imagen
 		LaminaConImagen laminaConImagen = new LaminaConImagen();
 		c.add(laminaConImagen,createConstraints(0,0,3,1,1.0,0.2,
@@ -174,7 +172,7 @@ class FondoPanel extends JPanel{
 	private Image imagen;
 	@Override
 	public void paint(Graphics g){
-		imagen = new ImageIcon(getClass().getResource("./img/gourmet.jpg")).getImage();
+		imagen = new ImageIcon(getClass().getResource("./img/logo.jpg")).getImage();
 
 		g.drawImage(imagen, 0, 0, getWidth(),getHeight(),this);
 
